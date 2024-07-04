@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { InfoWindow, Map } from 'react-bmapgl';
 import { styleJson2 } from './data';
 interface WindowProps {
-    BMapGL?: any; // 如果知道更准确的类型，可以替代 any
+    BMapGL?: any;
 }
 const HomePage = () => {
     const mapRef = useRef(null);
@@ -18,7 +18,6 @@ const HomePage = () => {
         )
             .then((response) => response.json())
             .then((data: { daily: [] }) => {
-                console.log(data);
                 let weather = '';
                 data?.daily?.forEach((item: any) => {
                     weather +=
@@ -50,15 +49,12 @@ const HomePage = () => {
         },
         location?: string,
     ) => {
-        console.log(location);
         fetch(
             `https://geoapi.qweather.com/v2/city/lookup?location=${address?.city}&adm=${address?.province}&key=d39fc1bd53194ffe99b03a3685be5d9b`,
         )
             .then((response) => response.json())
             .then((res) => {
                 if (res.code === '200') {
-                    console.log(res);
-
                     getWeather(
                         res?.location?.[0]?.id,
                         address.province + address.city,
