@@ -10,3 +10,5 @@ pnpm dev
 3. 访问
 http://localhost:8000
 ```
+
+![alt text](20240704155758_rec_.gif)
